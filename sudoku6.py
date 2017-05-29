@@ -1,8 +1,8 @@
 import sudomodule6 as sm
 import numpy as np
 import time
-#puz = [[0,0,0,0,0,0,5,0,0],[0,0,0,6,0,9,0,3,0],[0,0,9,1,5,0,0,2,6],[3,0,0,0,0,8,0,5,7],[0,0,7,0,0,0,2,0,0],[8,6,0,3,0,0,0,0,4],[7,4,0,0,6,5,9,0,0],[0,5,0,4,0,3,0,0,0],[0,0,8,0,0,0,0,0,0]]
-puz = [[0,6,0,2,7,0,1,0,0],[0,0,9,8,0,0,0,0,6],[0,3,7,0,0,0,4,0,0],[0,0,0,4,2,0,9,7,0],[0,0,0,6,0,1,0,0,0],[0,8,2,0,3,9,0,0,0],[0,0,5,0,0,0,3,9,0],[7,0,0,0,0,5,2,0,0],[0,0,3,0,8,2,0,1,0]]
+puz = [[0,0,0,0,0,0,5,0,0],[0,0,0,6,0,9,0,3,0],[0,0,9,1,5,0,0,2,6],[3,0,0,0,0,8,0,5,7],[0,0,7,0,0,0,2,0,0],[8,6,0,3,0,0,0,0,4],[7,4,0,0,6,5,9,0,0],[0,5,0,4,0,3,0,0,0],[0,0,8,0,0,0,0,0,0]]
+#puz = [[0,6,0,2,7,0,1,0,0],[0,0,9,8,0,0,0,0,6],[0,3,7,0,0,0,4,0,0],[0,0,0,4,2,0,9,7,0],[0,0,0,6,0,1,0,0,0],[0,8,2,0,3,9,0,0,0],[0,0,5,0,0,0,3,9,0],[7,0,0,0,0,5,2,0,0],[0,0,3,0,8,2,0,1,0]]
 
 missing_indices=[]
 missing_values=[]
@@ -32,26 +32,27 @@ for row in missing_values[0]:
 
 
 def inplace(puz, x):
-	print('Going to next level', x)
+	#print('Going to next level', x)
 	for row in missing_values[x]:
 		if(sm.check(puz,row,missing_indices[x],x)):
 			sm.place(puz[x], missing_indices[x], row)
 			if(x==8):
 				print puz
+				
 				return
 			inplace(puz,x+1)
-			print puz
-			print x
+			#print puz
+			#print x
+		else:
 			for i in missing_indices[x]:
-				missing_values[i]=0
-			print puz
-"""
-	inplace(puz,x)
+				puz[x][i]=0
+		
+
 	
 			
-	print puz
+	#print puz
 	
-			"""
+		
 	
 inplace(puz,0)
 #print(puz)
